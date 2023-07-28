@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+:root {
+    --dark-blue: #313E69;
+    --bring-red: #FA3844;
+    --black: #1A1A33;
+    --white: #E8E8F3;
+    --grey: #666699;
+    --light-blue: #A6C1EE;
+    --big-padding-right: 90px;
+    --big-padding-left: 90px;
+    --big-padding-top: 60px;
+    --big-padding-bottom: 60px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--white);
+  color: var(--black);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.hero-canvas {
+    background: linear-gradient(45deg, #57689e 0%, #313E69 50%, #57689e 100%); 
+    width: 100%;
+    margin: 100px auto; 
+    position: relative;
+}
+
+.hero-logo {  
+  width: 25%;
+}
+
+.trump {
+    width: 15%;
+    position: absolute;
+    right: 28%;
+    bottom: 0;
+    z-index: 3;
+}
+
+.biden {
+  width: 12%;
+  position: relative;
+  left: 30%;
+  bottom: 0;
+  margin-bottom: -7px;
+  z-index: 2;
+
+
+}
+
+.red {
+    color: var(--bring-red);
+}
+
+.hero-logo-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.streep {
+  width: 10.3%;
+  position: absolute;
+  right: 11%;
+  bottom: 0;
+  z-index: 1;
+}
+
+.lebron {
+  width: 15.5%;
+  position: absolute;
+  left: 20%;
+  bottom: 0;
+  z-index: 1;
+}
+
+.jokic {
+  width: 11.5%;
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  z-index: 2;
+}
+
+.powell {
+  width: 18.9%;
+  position: absolute;
+  left: 8%;
+  bottom: 0;
+  z-index: 0;
+}
+
+.dummy-font {
+  margin-left: 100px;
+  font-size: 50px;
+  color: var(--white);
+}
+
+.logoText {
+  width: 10%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+

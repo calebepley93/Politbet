@@ -1,0 +1,30 @@
+Outline
+
+- a basic clone of Kentucky Sports Radio, but for betting on pop culture
+
+Features
+
+- a blog section for articles
+- a forum section for discussion
+
+Colors 
+
+Primary - Dark Blue: #313E69
+Secondary - Bright Red: #FA3844
+Neutral - Blue-Infused Black: #1A1A33 (a blend of black and a touch of blue)
+Neutral - Blue-Infused White: #E8E8F3 (white with a slight tint of blue)
+Neutral - Blue-Infused Grey: #666699 (a grey with a hint of blue)
+Gradient - Light Blue: #A6C1EE (a light blue)
+
+
+Here's how I'd suggest these colors could be used:
+
+Primary (Dark Blue): This color can be used for important elements like headers, footers, and buttons. It can also be used for text and links.
+
+Secondary (Bright Red): Use this as an accent color to draw attention to key areas like call-to-action buttons, important notifications, or highlighted text.
+
+Blue-Infused Black: This can be used for the website's main text to provide a softer contrast against the white background. It's also great for icons and other minor elements.
+
+Blue-Infused White: This can be the main background color for your website. It gives the site a brighter, more inviting feel while maintaining a cohesive look with the rest of the color palette.
+
+Blue-Infused Grey: This color is perfect for secondary text, borders, and backgrounds of secondary content areas. It can also be used for disabled buttons or inputs.
