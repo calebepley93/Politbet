@@ -12,6 +12,7 @@ closeMenu.addEventListener("click", function() {
     hamburgerMenu.classList.remove("close");
 });
 
-
-
-
+function scrollToComments() {
+    let commentSection = document.getElementById('comments');
+    commentSection.scrollIntoView({ behavior: 'smooth' });
+}

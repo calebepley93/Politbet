@@ -597,6 +597,278 @@ footer {
     margin-bottom: 4px;
 }
 
+/* begin post page */
+
+.you-may-also-like-cont {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 200px;
+    right: 90px;
+    max-width: 240px;
+    background-color: var(--white);
+    border: 1px solid var(--light-grey);
+    border-radius: 4px;
+}
+
+.you-may-also-like-cont h4 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.post-page-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 90px;
+    padding-right: 90px; 
+}
+
+.post-page-container h1 {
+    font-size: 27px;
+    line-height: 29px;
+    letter-spacing: .25px;
+    width: 66%;
+}
+
+.author-container {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.author-container p {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--light-grey);
+}
+
+.author-container p:first-of-type {
+    margin-right: 6px;
+}
+
+.author-circle {
+    height: 4px;
+    width: 4px;
+    background-color: var(--light-grey);
+    border-radius: 50%;
+}
+
+.author-circle:first-of-type {
+    margin-right: 6px;
+}
+
+.author-container p:nth-of-type(2) {
+    margin-right: 6px;
+}
+
+.comment-container {
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+}
+
+.comment-container svg {
+    margin-right: 4px;
+}
+
+.comment-container p {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--dark-blue);
+    cursor: pointer;
+}
+
+.post-article-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30%;
+    margin-left: 18%;
+}
+
+.post-article-container p {
+    letter-spacing: .35px;
+    font-size: 17px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    word-break: break-word;
+}
+
+.post-article-container p:first-of-type {
+    margin-top: 32px;
+}
+
+.post-article-container h2 {
+    font-size: 32px;
+    line-height: 33px;
+    letter-spacing: .25px;
+    margin-bottom: 16px;
+}
+
+.picture-headline {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    border-bottom: .2px solid #a0a0a0;
+    padding-bottom: 16px;
+}
+
+.picture-headline:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.picture-headline img {
+    width: 50px;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.picture-headline h3 {
+    font-weight: 400;
+    line-height: 20px;
+    min-height: 50px;
+    font-size: 15px;
+}
+
+.picture-headline h3:hover {
+    color: var(--bring-red);
+    cursor: pointer;
+}
+
+.second-author-container {
+    position: absolute;
+    top: 260px;
+    left: 90px;
+}
+
+.second-author-img-cont {
+    width: 50px;
+    margin-top: 8px;
+}
+
+.second-author-img-cont img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.second-author-container p {
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: .15px;
+    color: var(--light-grey);
+    margin-top: 8px;
+}
+
+.profile-name {
+    margin-top: 0;
+    font-size: 15px;
+    letter-spacing: .15px;
+    color: var(--dark-blue);
+}
+
+.second-author-img-cont p:last-of-type {
+    margin-top: 6px;
+}
+
+.comment-container2 {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    
+    margin-right: 30%;
+    margin-left: 18%;
+}
+
+.line-container {
+    display: block;
+    flex: 1 1;
+    height: .05em;
+    background: var(--light-grey);
+    content: "";
+}
+
+.comment-number {
+    height: 100%;
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    font-weight: 500;
+    line-height: 1.75;
+    color: var(--dark-blue);
+    background-color: var(--light-blue);
+    border-radius: 8px;
+    transition: .3s;
+}
+
+.comment-number:hover {
+    background-color: var(--bring-red);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.comment-section {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30%;
+    margin-left: 18%;
+    padding-bottom: 90px;
+    border-bottom: .2px solid var(--bring-red);
+}
+
+.comment-section a {
+    color: var(--dark-blue);
+    transition: .2s;
+}
+
+.comment-section a:hover {
+    color: var(--bring-red);
+    cursor: pointer;
+}
+
+.comment-section hr {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    border: none;
+    border-bottom: .2px solid var(--light-grey);
+}
+
+@media screen and (max-width: 1150px) {
+   
+
+    .second-author-container {
+        display: none;
+    }
+
+    .post-article-container {
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 36%;
+        padding-left: 90px;
+    }
+
+    .comment-container2 {
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 36%;
+        padding-left: 90px;
+    }
+
+    .comment-section {
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 36%;
+        padding-left: 90px;
+    }
+
+}
+
 @media screen and (max-width: 999px) {
 
     .in-the-news-cont {
@@ -659,6 +931,56 @@ footer {
         margin-left: 0;
     }
 
+    .post-page-container {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .post-article-container {
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+    .you-may-also-like-cont {
+        display: none;
+    }
+
+    .post-page-container h1 {
+        width: 100%;
+    }
+
+    .post-article-container img {
+        max-width: 550px;
+        align-self: center;
+
+    }
+
+    .comment-container2 {
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+    .line-container {
+        height: 1px;
+    }
+
+    .comment-section {
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+}
+
+@media screen and (max-width: 750px) {
+    .post-article-container img {
+        max-width: 100%;
+    }
 }
 
 @media screen and (max-width: 499px) {
@@ -694,4 +1016,25 @@ footer {
         padding-left: 24px;
         padding-right: 24px;
     }
+
+    .post-page-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .post-article-container {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
+    .comment-container2 {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
+    .comment-section {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+
 }
