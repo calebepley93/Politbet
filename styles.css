@@ -608,7 +608,6 @@ footer {
     right: 90px;
     max-width: 240px;
     background-color: var(--white);
-    border: 1px solid var(--light-grey);
     border-radius: 4px;
 }
 
@@ -837,6 +836,175 @@ footer {
     margin-bottom: 16px;
     border: none;
     border-bottom: .2px solid var(--light-grey);
+}
+
+#loginModal {
+    visibility: hidden;
+    position: fixed;
+    z-index: 1;
+    margin: 0 auto;
+    top: 55%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
+    padding: 24px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#loginModal input {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--white);
+    color: var(--dark-blue);
+}
+
+#loginModal input:last-of-type {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    line-height: 1.75;
+    color: var(--white);
+    background-color: var(--bring-red);
+    border-radius: 8px;
+    transition: .3s;
+    border: none;
+}
+
+#loginModal input:last-of-type:hover {
+    background-color: var(--light-grey);
+    color: var(--white);
+    cursor: pointer;
+}
+
+#loginModal h3 {
+    font-size: 20px;
+    line-height: 33px;
+    letter-spacing: .25px;
+    margin-bottom: 16px;
+    align-self: center;
+}
+
+#registerModal {
+    visibility: hidden;
+    position: fixed;
+    z-index: 1;
+    margin: 0 auto;
+    top: 55%;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    background-color: var(--white);
+    transform: translate(-50%, -50%);
+    padding: 24px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+}
+
+#registerModal h3 {
+    font-size: 20px;
+    line-height: 33px;
+    letter-spacing: .25px;
+    margin-bottom: 16px;
+    align-self: center;
+}
+
+#registerModal input:last-of-type {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    line-height: 1.75;
+    color: var(--white);
+    background-color: var(--bring-red);
+    border-radius: 8px;
+    transition: .3s;
+    border: none;
+}
+
+#registerModal input:last-of-type:hover {
+    background-color: var(--light-grey);
+    color: var(--white);
+    cursor: pointer;
+}
+
+#registerModal input {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--white);
+    color: var(--dark-blue);
+}
+
+#username {
+    margin-bottom: 8px;
+}
+
+#password {
+    margin-bottom: 16px;
+}
+
+.login-modal-button {
+    width: 100%;
+    padding: 8px 16px;
+    font-size: 16px;
+    box-sizing: border-box;
+    line-height: 1.75;
+    color: var(--white);
+    background-color: var(--bring-red);
+    border-radius: 8px;
+    transition: .3s;
+    border: none;
+}
+
+.login-modal-button:hover {
+    background-color: var(--light-grey);
+    cursor: pointer;
+}
+
+.modal-divider {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.dont-have-account {
+    display: flex;
+    flex-direction: column; 
+}
+
+.dont-have-account a {
+    color: var(--white);
+    transition: .3s;
+    margin-top: 8px;
+    background-color: var(--bring-red);
+    padding: 8px 16px;
+    width: 100%;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.dont-have-account a:hover {
+    background-color: var(--light-grey);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1150px) {

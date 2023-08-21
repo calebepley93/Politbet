@@ -18,7 +18,8 @@
             <a href="forum.php" class="overlay-list">Forum</a>
         </div>
     </div>
-    <form action="../register.php" method="post">
+    <form action="../register.php" method="post" id="registerModal">
+        <h3>Sign Up</h3>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <label for="email">Email:</label>
@@ -26,13 +27,24 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <input type="submit" value="Register">
+        <hr class="modal-divider">
+        <div class="dont-have-account">
+            <p>Already have an account?</p>
+            <a href="#" class="login-switch-modal-button">Login</a>
+        </div>
     </form>
-    <form action="../login.php" method="post">
+    <form action="../login.php" method="post" id="loginModal">
+        <h3>Login</h3>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" class="login-modal-button">
+        <hr class="modal-divider">
+        <div class="dont-have-account">
+            <p>Don't have an account?</p>
+            <a href="#" class="register-modal-button">Sign Up</a>
+        </div>
     </form>
     <header class="big-header">
         <div class="header-top">
@@ -120,7 +132,7 @@
         <div class="line-container"></div>
     </div>
     <section class="comment-section">
-        <a href="#">Login to comment</a>
+        <a href="#" class="comment-section-login">Login to comment</a>
         <hr>
     </section>
     <footer>

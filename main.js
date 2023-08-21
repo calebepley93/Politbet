@@ -16,3 +16,28 @@ function scrollToComments() {
     let commentSection = document.getElementById('comments');
     commentSection.scrollIntoView({ behavior: 'smooth' });
 }
+
+function openLoginModal() {
+        loginModal.style.visibility = "visible";
+    }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    let commentLogin = document.querySelector('.comment-section-login');
+    let loginModal = document.getElementById('loginModal');
+    
+
+
+    commentLogin.addEventListener('click', openLoginModal);
+
+    document.getElementById('closeLoginModal').addEventListener('click', function() {
+        loginModal.style.visibility = "hidden";
+    });
+
+    // Rest of your code...
+});
+
+
+
+
+
