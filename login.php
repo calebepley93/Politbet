@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "SELECT password FROM polibetusers WHERE username = ?";
+$sql = "SELECT password FROM registeredusers WHERE username = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $username);
 $stmt->execute();
@@ -23,7 +23,7 @@ $row = $result->fetch_assoc();
 if ($row && password_verify($password, $row['password'])) {
     session_start();
     $_SESSION['username'] = $username;
-    header("Location: welcome.php"); // Redirect to a welcome page
+    header("Location: ./Posts/post1.php"); // Redirect to a welcome page
 } else {
     echo "Incorrect username or password";
 }

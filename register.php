@@ -18,7 +18,7 @@ $password = $_POST['password'];
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 // Insert into database
-$sql = "INSERT INTO polibetusers (username, email, password) VALUES (?, ?, ?)";
+$sql = "INSERT INTO registeredusers (username, email, password) VALUES (?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sss", $username, $email, $hashed_password);
 

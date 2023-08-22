@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "polibet_user_login";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if (isset($_SESSION['username'])) {
+    // User is logged in
+    // Show comment form or other logged-in features
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +42,8 @@
         </div>
     </div>
     <form action="../register.php" method="post" id="registerModal">
+        <button id="closeLoginModal" class="close-button1" type="button" onclick="closeLoginModal3();">&times;</button>
+        <!-- gonna have to change some stuff on this to avoid conflict -->
         <h3>Sign Up</h3>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -30,10 +55,12 @@
         <hr class="modal-divider">
         <div class="dont-have-account">
             <p>Already have an account?</p>
-            <a href="#" class="login-switch-modal-button">Login</a>
+            <a href="#" class="login-switch-modal-button" onclick="switchRegistertoLogin();">Login</a>
         </div>
     </form>
-    <form action="../login.php" method="post" id="loginModal">
+    <div id="modalBackdrop"></div>
+    <form action="../login.php" method="post" id="loginModal" class="login-modal">
+        <button id="closeLoginModal" class="close-button1" type="button" onclick="closeLoginModal2();">&times;</button>
         <h3>Login</h3>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -43,9 +70,10 @@
         <hr class="modal-divider">
         <div class="dont-have-account">
             <p>Don't have an account?</p>
-            <a href="#" class="register-modal-button">Sign Up</a>
+            <a href="#" class="register-modal-button" onclick="switchModal();">Sign Up</a>
         </div>
     </form>
+    <!-- add parent div and change javascript to match -->
     <header class="big-header">
         <div class="header-top">
             <div class="empty-div">
@@ -57,7 +85,7 @@
                 <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p class="login-text">LOGIN</p>
+            <a class="login-text" onclick="openLoginModal();">LOGIN</a>
         </div>
         <div class="header-bottom">
             <!-- a nav menu with home, blog, about, forum -->
@@ -131,10 +159,38 @@
         <div class="comment-number">0 comments</div>
         <div class="line-container"></div>
     </div>
-    <section class="comment-section">
-        <a href="#" class="comment-section-login">Login to comment</a>
-        <hr>
-    </section>
+    <?php
+        // Retrieve comments from the database
+$sql = "SELECT username, comment FROM comments WHERE post_id = ?"; // Replace with your correct table name and column names
+$stmt = $conn->prepare($sql);
+$post_id = 1; // Replace with the actual post ID
+$stmt->bind_param("i", $post_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Display comments
+while ($row = $result->fetch_assoc()) {
+    echo '<div class="comment">';
+    echo '<p class="comment-author">' . htmlspecialchars($row['username']) . '</p>';
+    echo '<p class="comment-text">' . htmlspecialchars($row['comment']) . '</p>';
+    echo '</div>';
+}
+
+
+        if (isset($_SESSION['username'])):
+    ?>
+      <!-- Comment form for logged-in users -->
+        <form action="../post_comment.php" method="post" id="commentForm">
+            <textarea name="comment" id="comment" placeholder="Write your comment here..." required></textarea>
+            <input type="submit" value="Post Comment">
+        </form>
+    <?php else: ?>
+        <section class="comment-section">
+            <a class="comment-section-login" onclick="openLoginModal();">Login to comment</a>
+            <hr>
+        </section>
+    <?php endif; ?>
+
     <footer>
         <p>Polibet <span>&copy; 2023</span></p>
     </footer>

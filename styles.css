@@ -838,12 +838,12 @@ footer {
     border-bottom: .2px solid var(--light-grey);
 }
 
-#loginModal {
+.login-modal {
     visibility: hidden;
     position: fixed;
-    z-index: 1;
+    z-index: 10000000;
     margin: 0 auto;
-    top: 55%;
+    top: 50%;
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -855,9 +855,11 @@ footer {
     color: var(--white);
     border-radius: 8px;
     box-sizing: border-box;
+    width: 30%;
+    max-width: 500px;
 }
 
-#loginModal input {
+.login-modal input {
     width: 100%;
     padding: 8px 16px;
     font-size: 16px;
@@ -869,7 +871,7 @@ footer {
     color: var(--dark-blue);
 }
 
-#loginModal input:last-of-type {
+.login-modal input:last-of-type {
     width: 100%;
     padding: 8px 16px;
     font-size: 16px;
@@ -882,13 +884,13 @@ footer {
     border: none;
 }
 
-#loginModal input:last-of-type:hover {
+.login-modal input:last-of-type:hover {
     background-color: var(--light-grey);
     color: var(--white);
     cursor: pointer;
 }
 
-#loginModal h3 {
+.login-modal h3 {
     font-size: 20px;
     line-height: 33px;
     letter-spacing: .25px;
@@ -896,12 +898,23 @@ footer {
     align-self: center;
 }
 
+#modalBackdrop {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as desired */
+    z-index: 9999999; /* Ensure it's below the modal but above other content */
+  }
+
 #registerModal {
     visibility: hidden;
     position: fixed;
-    z-index: 1;
+    z-index: 10000000;
     margin: 0 auto;
-    top: 55%;
+    top: 50%;
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -912,6 +925,9 @@ footer {
     background-color: var(--black);
     color: var(--white);
     border-radius: 8px;
+    box-sizing: border-box;
+    width: 30%;
+    max-width: 500px;
 }
 
 #registerModal h3 {
@@ -1005,6 +1021,26 @@ footer {
 .dont-have-account a:hover {
     background-color: var(--light-grey);
     cursor: pointer;
+}
+
+.close-button1 {
+    font-size: 24px;
+    line-height: 24px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    color: var(--white);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    transition: color 0.3s;
+}
+
+.close-button1:hover {
+    color: var(--bring-red);
 }
 
 @media screen and (max-width: 1150px) {
@@ -1143,11 +1179,27 @@ footer {
         padding-left: 40px;
     }
 
+    .login-modal {
+        width: 50%;
+    }
+
+    #registerModal {
+        width: 50%;
+    }
+
 }
 
 @media screen and (max-width: 750px) {
     .post-article-container img {
         max-width: 100%;
+    }
+
+    .login-modal {
+        width: 66%;
+    }
+
+    #registerModal {
+        width: 66%;
     }
 }
 
@@ -1203,6 +1255,14 @@ footer {
     .comment-section {
         padding-right: 24px;
         padding-left: 24px;
+    }
+
+    .login-modal {
+        width: 80%;
+    }
+
+    #registerModal {
+        width: 80%;
     }
 
 }
