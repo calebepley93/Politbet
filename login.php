@@ -1,4 +1,6 @@
 <?php
+session_start(); // Start the session at the beginning
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -21,7 +23,6 @@ $result = $stmt->get_result();
 $row = $result->fetch_assoc();
 
 if ($row && password_verify($password, $row['password'])) {
-    session_start();
     $_SESSION['username'] = $username;
     header("Location: ./Posts/post1.php"); // Redirect to a welcome page
 } else {
@@ -30,4 +31,4 @@ if ($row && password_verify($password, $row['password'])) {
 
 $conn->close();
 ?>
-?>
+

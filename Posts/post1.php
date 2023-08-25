@@ -163,7 +163,7 @@ if (isset($_SESSION['username'])) {
         // Retrieve comments from the database
 $sql = "SELECT username, comment FROM comments WHERE post_id = ?"; // Replace with your correct table name and column names
 $stmt = $conn->prepare($sql);
-$post_id = 1; // Replace with the actual post ID
+$post_id = 0; // Replace with the actual post ID
 $stmt->bind_param("i", $post_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -171,9 +171,17 @@ $result = $stmt->get_result();
 // Display comments
 while ($row = $result->fetch_assoc()) {
     echo '<div class="comment">';
-    echo '<p class="comment-author">' . htmlspecialchars($row['username']) . '</p>';
-    echo '<p class="comment-text">' . htmlspecialchars($row['comment']) . '</p>';
+    echo '<div class="comment-avatar">';
+    echo '<img src="../Imgs/monkey.png" alt="profilephoto">';
     echo '</div>';
+    echo '<div class="comment-author-date-container">';
+    echo '<p class="comment-author">' . htmlspecialchars($row['username']) . '</p>';
+    echo '<p class="comment-date">24 Aug, 2023</p>';
+    echo '<a class="comment-reply">Reply</a>';
+    echo '</div>';
+    echo '</div>';
+    echo '<p class="comment-text">' . htmlspecialchars($row['comment']) . '</p>';
+    echo '<hr class=comment-section-divider>';
 }
 
 
@@ -182,7 +190,7 @@ while ($row = $result->fetch_assoc()) {
       <!-- Comment form for logged-in users -->
         <form action="../post_comment.php" method="post" id="commentForm">
             <textarea name="comment" id="comment" placeholder="Write your comment here..." required></textarea>
-            <input type="submit" value="Post Comment">
+            <input type="submit" value="Post Comment" class="post-comment-button">
         </form>
     <?php else: ?>
         <section class="comment-section">
