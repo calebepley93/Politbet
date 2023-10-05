@@ -28,6 +28,9 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Why Trump is almost certain to not appear in the August RNC debates</title>
     <link rel="stylesheet" href="../styles.css">
+    <script>
+    var isLoggedIn = <?php echo isset($_SESSION['username']) ? 'true' : 'false'; ?>;
+    </script>
 </head>
 <body>
     <div class="overlay-menu">
@@ -96,12 +99,18 @@ if (isset($_SESSION['username'])) {
                     <div class="line"></div>
                 </div>
                 <a href="../index.html">Home</a>
-                <a href="blog.php">Politics</a>
-                <a href="blog.php">Sports</a>
-                <a href="blog.php">Entertainment</a>
+                <a href="blog.php">Blog</a>
+                <a href="blog.php">Predictions</a>
                 <a href="blog.php">Where to Bet</a>
                 <a href="about.php">About</a>
-                <a href="forum.php">Forum</a>
+                <a href="forum.php">Contact</a>
+                <?php
+                if (isset($_SESSION['username'])): // User is logged in
+                ?>
+                <a href="../account.php">Account</a>
+                <?php
+                endif;
+                ?>
             </nav>
             <div class="header-social-icons-bottom">
                 <a href="#" target="_blank"><i class="fa-brands fa-square-facebook"></i></a>
@@ -132,7 +141,7 @@ if (isset($_SESSION['username'])) {
             <div class="author-circle"></div>
             <p>August 18, 2023</p>
             <div class="author-circle"></div>
-            <div class="comment-container">
+            <div class="comment-icon-container">
                 <svg class="AlternateArticle_commentsvg__c_HtX jss45" fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M10.8 0H1.2C0.54 0 0 0.54 0 1.2V12L2.4 9.6H10.8C11.46 9.6 12 9.06 12 8.4V1.2C12 0.54 11.46 0 10.8 0ZM10.8 8.4H2.4L1.2 9.6V1.2H10.8V8.4Z" fill="#123084"></path></svg>
                 <p class="comment-link" onclick="scrollToComments();">Comments</p>
             </div>
@@ -160,48 +169,95 @@ if (isset($_SESSION['username'])) {
         <div class="line-container"></div>
     </div>
     <?php
-        // Retrieve comments from the database
-$sql = "SELECT username, comment FROM comments WHERE post_id = ?"; // Replace with your correct table name and column names
-$stmt = $conn->prepare($sql);
-$post_id = 0; // Replace with the actual post ID
-$stmt->bind_param("i", $post_id);
-$stmt->execute();
-$result = $stmt->get_result();
+function renderComments($parent_id, $post_id, $conn, $level = 0) {
+    $sql = $parent_id === NULL ?
+        "SELECT id, username, comment FROM comments WHERE post_id = ? AND parent_id IS NULL" :
+        "SELECT id, username, comment FROM comments WHERE post_id = ? AND parent_id = ?";
+    $stmt = $conn->prepare($sql);
+    if ($parent_id === NULL) {
+        $stmt->bind_param("i", $post_id);
+    } else {
+        $stmt->bind_param("ii", $post_id, $parent_id);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-// Display comments
-while ($row = $result->fetch_assoc()) {
-    echo '<div class="comment">';
-    echo '<div class="comment-avatar">';
-    echo '<img src="../Imgs/monkey.png" alt="profilephoto">';
-    echo '</div>';
-    echo '<div class="comment-author-date-container">';
-    echo '<p class="comment-author">' . htmlspecialchars($row['username']) . '</p>';
-    echo '<p class="comment-date">24 Aug, 2023</p>';
-    echo '<a class="comment-reply">Reply</a>';
-    echo '</div>';
-    echo '</div>';
-    echo '<p class="comment-text">' . htmlspecialchars($row['comment']) . '</p>';
-    echo '<hr class=comment-section-divider>';
+    while ($row = $result->fetch_assoc()) {
+        $comment_id = $row['id'];
+        echo '<div class="comment-container1 level-' . $level . '">'; // Add level class
+            
+                echo '<div class="comment">';
+                    echo '<div class="comment-topline">';
+                        echo '<div class="comment-avatar">';
+                            echo '<img src="../Imgs/monkey.png" alt="profilephoto">';
+                        echo '</div>';
+                        echo '<div class="comment-author-date-container">';
+                            echo '<p class="comment-author">' . htmlspecialchars($row['username']) . '</p>';
+                            echo '<p class="comment-date">24 Aug, 2023</p>';
+                            echo '<a href="javascript:void(0);" class="comment-reply" onclick="showReplyForm(' . $comment_id . ');">Reply</a>';
+                        echo '</div>';
+                     echo '</div>';
+                     echo '<p class="comment-text">' . htmlspecialchars($row['comment']) . '</p>';
+                     
+                echo '</div>';
+                echo '<hr class="comment-section-divider">';
+                echo '<div class="reply-form" id="reply-form-' . $comment_id . '" style="display: none;">';
+                    echo '<form action="../post_reply.php" method="post">';
+                        echo '<textarea name="comment" placeholder="Write your reply here..." required id="commentReply2"></textarea>';
+                        echo '<input type="hidden" name="parent_id" value="' . $comment_id . '">'; // Change to comment_id
+                        echo '<input type="submit" value="Post Reply" id="replySubmit">';
+                    echo '</form>';
+                echo '</div>';
+        echo '</div>'; // End of the comment div
+        echo '<hr class="comment-section-divider" id="hr-reply-' . $comment_id . '" style="display: none;">';
+
+        // Recursive call to render the replies to this comment
+        renderComments($comment_id, $post_id, $conn, $level + 1);
+
+    }
 }
 
+// Call the function to render top-level comments
+$post_id = 0; // Replace with the actual post ID
+renderComments(NULL, $post_id, $conn, 0);
 
-        if (isset($_SESSION['username'])):
-    ?>
+if (isset($_SESSION['username'])):
+?>
       <!-- Comment form for logged-in users -->
         <form action="../post_comment.php" method="post" id="commentForm">
             <textarea name="comment" id="comment" placeholder="Write your comment here..." required></textarea>
             <input type="submit" value="Post Comment" class="post-comment-button">
         </form>
-    <?php else: ?>
+<?php else: ?>
         <section class="comment-section">
             <a class="comment-section-login" onclick="openLoginModal();">Login to comment</a>
             <hr>
         </section>
-    <?php endif; ?>
+<?php endif; ?>
+
 
     <footer>
         <p>Polibet <span>&copy; 2023</span></p>
     </footer>
     <script src="../main.js"></script>
+    <script>
+        function showReplyForm(commentId) {
+    if (isLoggedIn) {  // Check if the user is logged in
+        var replyForm = document.getElementById('reply-form-' + commentId);
+        var hrReply = document.getElementById('hr-reply-' + commentId);
+        
+        if (replyForm.style.display === 'none' || replyForm.style.display === '') {
+            replyForm.style.display = 'block';
+            hrReply.style.display = 'block'; // Show the <hr>
+        } else {
+            replyForm.style.display = 'none';
+            hrReply.style.display = 'none'; // Hide the <hr>
+        }
+    } else {
+        openLoginModal();  // Open login modal if the user is not logged in
+    }
+}
+
+    </script>
 </body>
 </html>
